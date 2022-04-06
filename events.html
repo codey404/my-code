@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img
+      src="https://picsum.photos/100"
+      alt=""
+      ontouchedend="console.log('image touched')"
+    />
+
+    <button
+      onclick="console.log('button click')"
+      onlclick="console.log('double click')"
+      onmouseenter="console.log('mouse enter')"
+      onmouseleave="console.log('mouse leave')"
+    >
+      submit
+    </button>
+    <button
+      onclick="hello(event)"
+      ondrag="elementDragged()"
+      ondragend="dragEventEnd(event)"
+      draggable="true"
+    >
+      cancle
+    </button>
+
+    <script>
+      function hello(el) {
+        console.log(el);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <style>
+      .rg {
+        color: blueviolet;
+      }
+      .font {
+        font-size: 4rem;
+      }
+      .co {
+        color: crimson;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="first">Hello its Me</h1>
+    <p id="para" class="rg font">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit unde
+      pariatur iure tempore recusandae libero voluptatem eum, assumenda ipsa ab!
+    </p>
+
+    <h2 class="second">Hello Dom 1</h2>
+    <h2 class="second">Hello Dom 2</h2>
+    <h2 class="second">Hello Dom 3</h2>
+    <h2 class="second">Hello Dom 4</h2>
+
+    <table class="table table-dark">
+      <thead>
+        <th>ID</th>
+        <th>Names</th>
+        <th>Email</th>
+        <th>Address</th>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+
+    <script>
+      let firstId = document.getElementById("para");
+      setInterval(() => {
+        firstId.classList.toggle("rg");
+      }, 1000);
+
+      let second = document.getElementsByClassName("second"); // by this we get array of our classes but this is not pure array
+      // [...document.getElementsByClassName("second")] // also wirte in this tp avodie extra step
+      second = [...second]; // by using spread operator we can convert it into pure array and acess array method
+      setInterval(() => {
+        second.forEach((el) => el.classList.toggle("co"));
+      }, 200);
+
+      let bag = document.getElementsByTagName("h1");
+
+      /////////////////////////////////////////////////////////////////////////////////////////////////
+      let students = null;
+      let tbody = document.getElementById("table-body");
+
+      fetch("https://622c3133087e0e041e054e7e.mockapi.io/students")
+        .then((res) => res.json())
+        .then((data) => {
+          students = data;
+          renderData(data);
+        });
+
+      function renderData(data) {
+        tbody.innerHTML = "";
+        data.forEach((st) => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${st.id}</td>
+              <td>${st.name}</td>
+              <td>${st.email}</td>
+              <td>${st.address}</td>
+
+              </tr>`;
+        });
+      }
+
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    </script>
+  </body>
+</html>
